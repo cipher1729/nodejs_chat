@@ -11,8 +11,8 @@ function sentMessage(){
 		$('#messageInput').val('');
 	}
 }
-function setPseudo(){
 
+function setPseudo(){
  if ($("#pseudoInput").val() != "")
  {		socket.emit('setPseudo',$("#pseudoInput").val() );
 		$('#chatControls').show();
@@ -21,8 +21,8 @@ function setPseudo(){
  }
 }
 
-socket.on("message", function(data){
-	addMessage(data['message',data['pseudo');
+socket.on('message', function(data){
+	addMessage(data['message'],data['pseudo']);
 });
 
 $(function() {

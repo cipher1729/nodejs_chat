@@ -19,17 +19,13 @@ var io= require('socket.io').listen(server);
 
 io.sockets.on('connection', function (socket){
 	socket.on('setPseudo', function(data){
-		socket.set('pseudo',data);
+		socket.pseudo= data;
 	});
 
 	socket.on('message', function(message){
-		
-			socket.get('pseudo', function(error,name){
-					var data ={'message':message, pseudo:name};
+					var data ={'message':message, pseudo:socket.pseudo};
 					socket.broadcast.emit('message',data);
-			});
-					console.log("user"+ name +"send this:" + message);
-
+				console.log("user "+ socket.pseudo +" send this: " + message);
 });
 
 });
